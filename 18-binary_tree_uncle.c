@@ -5,15 +5,13 @@
  * @node: pointer to the node to find the uncle
  * Return: the uncle node, otherwise NULL
  */
-
 binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 {
-	binary_tree_t *grandparent = node->parent->parent;
-
-	if (!node || !node->parent || !grandparent)
+	if (!node || !node->parent || !node->parent->parent)
+	{
 		return (NULL);
-	if (grandparent->left == node->parent)
-		return (grandparent->right);
-	else
-		return (grandparent->left);
+	}
+	if (node->parent->parent->left == node->parent)
+		return (node->parent->parent->right);
+	return (node->parent->parent->left);
 }
